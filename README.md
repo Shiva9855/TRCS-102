@@ -95,10 +95,15 @@ Python:code
 prediction_probability = 0.85
 
 if prediction_probability >= 0.80:
+
     print("High Confidence: Dog")
-elif prediction_probability >= 0.50:
+    
+    elif prediction_probability >= 0.50:
+    
     print("Low Confidence: Dog")
+    
 else:
+
     print("Classification: Cat")
 
 
@@ -116,8 +121,11 @@ AI/ML Use Case: Early Stopping. If your model's loss stops decreasing or starts 
 Python:code
 
 for epoch in range(1, 100):
+
     if loss < 0.001:
+    
         print("Target accuracy reached. Stopping training.")
+        
         break
 
         
@@ -131,8 +139,11 @@ Python : code
 
 
 for image in dataset:
+
     if image.is_corrupted:
+    
         continue  # Skip this image and move to the next
+        
     process_image(image)
 
     
@@ -149,9 +160,13 @@ Python:code
 optimizer = "Adam"
 
 match optimizer:
+
     case "SGD":
+    
         print("Initializing Stochastic Gradient Descent")
+        
     case "Adam":
+    
         print("Initializing Adam Optimizer")
     case "RMSprop":
         print("Initializing RMSprop Optimizer")
