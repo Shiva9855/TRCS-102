@@ -64,3 +64,97 @@ Logicaland, or, notUsed to combine multiple data cleaning conditions (e.g., Inco
 
 
 Assignment=, +=, -=, *=, /=Used for iterative routines, like accumulating loss values or updating optimization loops (loss += current_batch_loss).Membershipin, not inUsed to check if a specific column/feature exists inside a dataset or list.
+
+
+📔 AI/ML Diary - Day 3
+
+📌 Topics Covered
+
+Conditional Statements (if, elif, else)
+
+Loop Control Statements (break, continue)
+
+Switch Case/Structural Pattern Matching in Python
+
+🚦 1. Conditional Statements
+
+Conditional statements allow our code to make decisions based on certain criteria. In AI/ML, these are widely used for filtering data, setting prediction thresholds, or routing model outputs.
+
+if: Executes a block of code only if a specified condition is true.
+
+elif (short for else if): Checks another condition if the previous conditions were false.
+
+else: Executes if none of the above conditions are met.
+
+
+🤖 AI/ML Practical Use Case:
+Setting classification thresholds for a machine learning model prediction.
+
+Python:code
+
+prediction_probability = 0.85
+
+if prediction_probability >= 0.80:
+    print("High Confidence: Dog")
+elif prediction_probability >= 0.50:
+    print("Low Confidence: Dog")
+else:
+    print("Classification: Cat")
+
+
+    
+🔄 2. Loop Control Statements
+
+Loop control statements change the execution flow from its normal sequence.
+
+🚫 break
+
+Concept: Terminates the loop entirely and transfers execution to the statement immediately following the loop.
+
+AI/ML Use Case: Early Stopping. If your model's loss stops decreasing or starts increasing (overfitting), you break the training loop early to save time and compute power.
+
+Python:code
+
+for epoch in range(1, 100):
+    if loss < 0.001:
+        print("Target accuracy reached. Stopping training.")
+        break
+
+        
+⏭️ continue
+
+Concept: Skips the rest of the current iteration and moves directly to the next iteration of the loop.
+
+AI/ML Use Case: Skipping corrupted, missing (NaN), or invalid data points during data preprocessing.
+
+Python : code
+
+
+for image in dataset:
+    if image.is_corrupted:
+        continue  # Skip this image and move to the next
+    process_image(image)
+
+    
+🎛️ 3. Switch Statement (Match-Case)
+
+Historically, Python did not have a traditional switch statement like C++ or Java. However, from Python 3.10+, structural pattern matching using the match and case keywords was introduced.
+
+Concept: Compares a variable against multiple possible values (patterns) in a cleaner way than long if-elif-else chains.
+
+AI/ML Use Case: Routing different evaluation metrics or selecting specific optimization algorithms based on user configuration.
+
+Python:code
+
+optimizer = "Adam"
+
+match optimizer:
+    case "SGD":
+        print("Initializing Stochastic Gradient Descent")
+    case "Adam":
+        print("Initializing Adam Optimizer")
+    case "RMSprop":
+        print("Initializing RMSprop Optimizer")
+    case _:
+        print("Unknown optimizer. Defaulting to SGD.")  # '_' acts as the 'default' case
+
