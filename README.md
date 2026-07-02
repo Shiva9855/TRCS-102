@@ -174,8 +174,7 @@ match optimizer:
         print("Unknown optimizer. Defaulting to SGD.")  # '_' acts as the 'default' case
 
 
-        📔 AI/ML Diary - Day 4
-        
+📔 AI/ML Diary - Day 4       
 📌 Topics Covered
 
 Introduction to Loops
@@ -201,10 +200,8 @@ AI/ML Use Case: Iterating through epochs to train a model, or looping over a lis
 Python
 
 # Simulating a model training loop over 3 epochs
-
 for epoch in range(1, 4):
-
-    print(f"Training Epoch {epoch}...")
+   print(f"Training Epoch {epoch}...")
     
 🔹 The while Loop
 
@@ -215,13 +212,10 @@ AI/ML Use Case: Training an agent in Reinforcement Learning until it reaches a s
 Python
 
 loss = 0.5
-
 # Loop runs until the loss drops below the acceptable threshold
 while loss > 0.1:
-
     print(f"Current loss: {loss:.2f}. Optimizing model...")
-    
-    loss -= 0.15  # Simulating loss reduction
+       loss -= 0.15  # Simulating loss reduction
     
 🔹 Infinite Loops (while True)
 
@@ -230,19 +224,14 @@ Concept: A loop that runs indefinitely because its conditional expression always
 AI/ML Use Case: Setting up real-time computer vision or camera streams (e.g., OpenCV) where the script must process video frames continuously until the user presses a 'quit' key.
 
 Python
-
 # Simulating a continuous video stream frame processor
 
 while True:
 
     frame_status = check_camera_feed()
-    
     if frame_status == "No Frame" or user_pressed_esc():
-    
         print("Stopping video stream.")
-        
-        break
-        
+        break 
     process_frame()
     
 🧩 2. Functions
@@ -250,9 +239,7 @@ while True:
 Functions are reusable blocks of organized code designed to perform a single, related action. They help keep machine learning code modular, clean, and production-ready.
 
 def Keyword: Used to declare a function.
-
 Parameters/Arguments: Inputs passed into the function.
-
 return Statement: Sends the result back to the caller.
 
 🤖 AI/ML Practical Use Case:
@@ -262,14 +249,10 @@ Creating a reusable function to calculate the performance metric (Accuracy) of a
 Python
 
 def calculate_accuracy(correct_predictions, total_predictions):
-
     accuracy = (correct_predictions / total_predictions) * 100
-    
     return accuracy
 
 # Reusing the function for evaluation
-
 score = calculate_accuracy(85, 100)
-
 print(f"Model Accuracy: {score}%")
 
