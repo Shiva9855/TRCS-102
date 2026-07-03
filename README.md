@@ -236,6 +236,7 @@ while True:
     
 
 📔 AI/ML Diary - Day 5
+
 📌 Topics Covered
 Deep Dive into Functions
 
@@ -247,50 +248,74 @@ Recursion in Python
 Functions are self-contained modules of code that accomplish a specific task. They prevent code duplication and make machine learning pipelines cleaner, scalable, and easier to debug.
 
 Python
+
 def greet_developer():
+
     print("Ready to train models!")
 
 greet_developer()  # Calling the function
+
+
 ⚙️ 2. Functions with Arguments
+
 Arguments are the actual data/values passed into a function when calling it. Python offers highly flexible ways to handle inputs, which is essential when configuring intricate ML model architectures.
 
 🔹 Positional & Keyword Arguments
+
 Positional: Arguments passed in the exact sequence defined by the function.
 
 Keyword: Arguments passed explicitly using name=value pairs, ignoring the sequence.
 
 Python
+
 def configure_layer(neurons, activation):
+
     print(f"Layer created with {neurons} neurons and {activation} activation.")
 
 configure_layer(64, "ReLU")               # Positional
+
 configure_layer(activation="Sigmoid", neurons=32) # Keyword
+
+
 🔹 Default Arguments
+
 Allows parameters to have a default value if no argument is passed during the function call. This is exactly how popular ML libraries like Scikit-Learn handle hyperparameters (e.g., defaulting learning_rate or max_depth).
 
 Python
+
 def train_model(epochs=10):  # Default value is 10
+
     print(f"Training model for {epochs} epochs...")
 
 train_model()    # Uses default (10)
+
 train_model(50)  # Overrides default to 50
+
 🔹 Arbitrary Arguments (*args and kwargs)
+
 *args (Non-Keyword Arguments): Allows a function to accept any number of positional arguments as a tuple.
 
 kwargs (Keyword Arguments): Allows a function to accept any number of keyworded arguments as a dictionary.
 
 Python
+
 # *args Use Case: Passing multiple feature arrays to process at once
 def clean_features(*features):
+
     print(f"Processing datasets: {features}") 
 
 # **kwargs Use Case: Dynamic hyperparameter configurations
 def build_model(**hyperparameters):
+
     for param, value in hyperparameters.items():
+    
         print(f"Setting {param} to {value}")
 
 build_model(lr=0.01, batch_size=64, optimizer="Adam")
+
+
 🔄 3. Recursion
+
 Recursion is a programming technique where a function calls itself directly or indirectly to solve a smaller instance of the same problem.
 
 Every recursive function requires:
@@ -300,14 +325,20 @@ Base Case: The condition that stops the recursion from running infinitely.
 Recursive Case: The part where the function calls itself with a modified input.
 
 🤖 AI/ML Relevance:
+
 Recursion is heavily utilized in tree-based machine learning algorithms (like Decision Trees and Random Forests) to split nodes into child branches until a stopping criterion (base case) is reached.
 
 Python
+
 # Classic Example: Calculating Factorial
 def factorial(n):
+
     if n == 1:  # Base Case
+    
         return 1
-    else:       # Recursive Case
+        
+    else: # Recursive Case
+    
         return n * factorial(n - 1)
 
 print(factorial(5))  # Output: 120
