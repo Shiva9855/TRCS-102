@@ -459,17 +459,29 @@ Python handles exceptions using a structured block layout:
 Python
 
 try:
+
     # Code that might crash/throw an exception
+    
     result = 10 / 0
+    
 except ZeroDivisionError as e:
+
     # Code that executes if a specific exception occurs
+    
     print(f"Error caught: {e}")
+    
 else:
+
     # Code that executes ONLY if NO exception occurred in the try block
+    
     print("Everything ran successfully!")
+    
 finally:
+
     # Code that ALWAYS executes, no matter what (used for cleanup)
+    
     print("Cleanup operations complete.")
+
     
 🗂️ 3. Handling Multiple Exceptions
 
@@ -478,16 +490,26 @@ A single block of code can throw different types of exceptions. You can catch th
 Python
 
 try:
+
     with open("dataset.csv", "r") as file:
+    
         data = file.read()
+        
     value = data[10] / 0  # Might trigger IndexError or ZeroDivisionError
+    
 
 except FileNotFoundError:
+
     print("The requested data file is missing!")
+    
 except ZeroDivisionError:
+
     print("Cannot compute metrics; division by zero encountered.")
+    
 except Exception as e:
+
     # Generic catch-all for any other unforeseen errors
+    
     print(f"An unexpected error occurred: {e}")
 
     
@@ -498,12 +520,15 @@ You can force an exception to occur manually using the raise keyword if specific
 Python
 
 def check_batch_size(batch_size):
+
     if batch_size <= 0:
+    
         raise ValueError("Batch size must be a positive integer greater than 0!")
+        
     print(f"Batch size configured to {batch_size}")
 
-# This will trigger an error and halt execution safely with a message
 check_batch_size(-5) 
+
 
 🤖 5. Practical Relevance in AI/ML
 
