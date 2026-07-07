@@ -425,3 +425,93 @@ Loading Raw Data: Parsing unstructured .txt text files for Natural Language Proc
 Saving Logs: Recording loss, accuracy values, and timestamp details during long training sessions so you can inspect them later.
 
 Model Serialization (Pickling): Saving your trained algorithm weights into a binary file (.pkl or .h5) onto the disk so it can be deployed to production later without retraining.
+
+
+
+📔 AI/ML Diary - Day 7
+
+📌 Topics Covered
+
+Introduction to Errors vs. Exceptions
+
+The try-except Block
+
+Handling Multiple Exceptions
+
+The else and finally Blocks
+
+Raising Custom Exceptions (raise)
+
+Relevance in AI/ML
+
+⚠️ 1. Errors vs. Exceptions
+
+Syntax Errors: Mistakes in the code structure that prevent Python from compiling/running it (e.g., forgetting a colon : or bad indentation).
+
+Exceptions: Errors detected during execution (runtime). The syntax is correct, but an operation fails (e.g., dividing by zero or trying to load a file that doesn't exist).
+
+If an exception is not handled, the program crashes instantly. In production AI pipelines, we use Exception Handling to keep the application running smoothly even when errors occur.
+
+🛠️ 2. The Core Exception Blocks (try, except, else, finally)
+
+Python handles exceptions using a structured block layout:
+
+Python
+
+try:
+    # Code that might crash/throw an exception
+    result = 10 / 0
+except ZeroDivisionError as e:
+    # Code that executes if a specific exception occurs
+    print(f"Error caught: {e}")
+else:
+    # Code that executes ONLY if NO exception occurred in the try block
+    print("Everything ran successfully!")
+finally:
+    # Code that ALWAYS executes, no matter what (used for cleanup)
+    print("Cleanup operations complete.")
+    
+🗂️ 3. Handling Multiple Exceptions
+
+A single block of code can throw different types of exceptions. You can catch them specifically to handle each scenario cleanly.
+
+Python
+
+try:
+    with open("dataset.csv", "r") as file:
+        data = file.read()
+    value = data[10] / 0  # Might trigger IndexError or ZeroDivisionError
+
+except FileNotFoundError:
+    print("The requested data file is missing!")
+except ZeroDivisionError:
+    print("Cannot compute metrics; division by zero encountered.")
+except Exception as e:
+    # Generic catch-all for any other unforeseen errors
+    print(f"An unexpected error occurred: {e}")
+
+    
+🚀 4. Raising Exceptions (raise)
+
+You can force an exception to occur manually using the raise keyword if specific business logic constraints are violated.
+
+Python
+
+def check_batch_size(batch_size):
+    if batch_size <= 0:
+        raise ValueError("Batch size must be a positive integer greater than 0!")
+    print(f"Batch size configured to {batch_size}")
+
+# This will trigger an error and halt execution safely with a message
+check_batch_size(-5) 
+
+🤖 5. Practical Relevance in AI/ML
+
+Exception handling is vital for building resilient automation and data science loops:
+
+Robust Data Ingestion: If you are scraping thousands of images or text files from the web and one link is broken (URLError / HTTPError), an exception handler allows your script to skip that file and continue downloading the rest without crashing.
+
+Dynamic System Checkpoints: Ensuring user inputs match model expectations (e.g., throwing an error if a user submits text data to a model that only takes image arrays).
+
+API Deployment: When serving a model using frameworks like Flask or FastAPI, exception blocks ensure that invalid incoming user requests return a clean 400 Bad Request error message instead of crashing the entire backend server.
+
