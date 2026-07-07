@@ -342,3 +342,86 @@ def factorial(n):
         return n * factorial(n - 1)
 
 print(factorial(5))  # Output: 120
+
+
+📔 AI/ML Diary - Day 6
+
+📌 Topics Covered
+
+Introduction to File Handling
+
+File Operations (Open, Read, Write, Close)
+
+File Modes (r, w, a, r+)
+
+The with Statement (Context Manager)
+
+Relevance in AI/ML
+
+📂 1. Introduction to File Handling
+
+File handling is a crucial concept in programming that allows us to create, read, update, and delete files stored on the local disk.
+
+In AI/ML, data rarely lives directly inside your code script. Instead, it is stored externally in formats like .txt, .csv, .json, or .xlsx. Learning how to stream and manipulate these files is the first step toward building actual data pipelines.
+
+⚙️ 2. Basic File Operations & Modes
+Python has a built-in open() function to interact with files. It requires two main parameters: the File Name and the Mode.
+
+🛠️ Common File Modes:
+
+'r' (Read): Default mode. Opens a file for reading; raises an error if the file does not exist.
+
+'w' (Write): Opens a file for writing. Creates a new file if it doesn't exist, or truncates (overwrites) the file if it does.
+
+'a' (Append): Opens a file to add data to the end of it without erasing existing content.
+
+'rb' / 'wb' (Binary Modes): Used for non-text files like images, videos, or serialized ML models.
+
+🚫 The Traditional Approach (Manual Close):
+
+When you open a file manually, you must close it using .close() to free up system memory resources.
+
+Python
+
+file = open("dataset.txt", "r")
+
+content = file.read()
+
+print(content)
+
+file.close()  # Mandatory to avoid memory leaks
+
+
+🔒 3. The Modern Approach: Using with Keyword
+
+The standard best practice in Python is using the with statement (also known as a Context Manager).
+
+Why use it?: It automatically closes the file as soon as the nested code block completes execution, even if an unexpected error or crash occurs midway.
+
+Python
+
+# Writing to a log file
+with open("training_logs.txt", "w") as file:
+
+    file.write("Epoch 1: Loss = 0.045\n")
+    
+    file.write("Epoch 2: Loss = 0.012\n")
+
+# Reading from the log file
+with open("training_logs.txt", "r") as file:
+
+    lines = file.readlines()  # Reads file line by line into a list
+    
+    for line in lines:
+    
+        print(line.strip())
+        
+🤖 4. Practical Relevance in AI/ML
+
+File handling forms the foundation for data ingestion and model persistence:
+
+Loading Raw Data: Parsing unstructured .txt text files for Natural Language Processing (NLP) or loading flat config metrics.
+
+Saving Logs: Recording loss, accuracy values, and timestamp details during long training sessions so you can inspect them later.
+
+Model Serialization (Pickling): Saving your trained algorithm weights into a binary file (.pkl or .h5) onto the disk so it can be deployed to production later without retraining.
