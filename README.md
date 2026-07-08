@@ -540,3 +540,98 @@ Dynamic System Checkpoints: Ensuring user inputs match model expectations (e.g.,
 
 API Deployment: When serving a model using frameworks like Flask or FastAPI, exception blocks ensure that invalid incoming user requests return a clean 400 Bad Request error message instead of crashing the entire backend server.
 
+
+
+📔 AI/ML Diary - Day 8
+
+📌 Topics Covered
+
+Introduction to Object-Oriented Programming (OOP) in Python
+
+What is Inheritance?
+
+Types of Inheritance (Single, Multiple, Multilevel, Hierarchical, Hybrid)
+
+Relevance in AI/ML
+
+🏗️ 1. What is Inheritance?
+
+Inheritance is a core pillar of OOP that allows a Child class (Derived class) to adopt attributes and methods from a Parent class (Base class). This promotes code reusability and helps build organized, scalable software architectures.
+
+🌿 2. Types of Inheritance in Python
+
+🔹 1. Single Inheritance
+
+A child class inherits from only one parent class.
+
+AI/ML Use Case: Creating a specific baseline Neural Network layer from a generic layer template.
+
+Python
+
+class Model: # Parent
+
+    def train(self): print("Training...")
+
+class LinearRegression(Model): # Child
+
+    def predict(self): print("Predicting...")
+
+    
+🔹 2. Multiple Inheritance
+
+A child class inherits features from more than one parent class.
+
+AI/ML Use Case: Combining separate independent utilities, like an image data preprocessor and an evaluation logger, into a single trainer pipeline.
+
+Python
+
+class DataPreprocessor: def clean(self): print("Cleaning data...")
+
+class Logger: def log(self): print("Logging metrics...")
+
+class TrainingPipeline(DataPreprocessor, Logger): # Inherits from both
+
+    pass
+
+    
+🔹 3. Multilevel Inheritance
+
+A child class inherits from a parent class, which itself is a child of another parent class (forming a chain).
+
+Python
+
+class Component: def initialize(self): print("Hardware Init")
+
+class GPU(Component): def allocate_mem(self): print("VRAM allocated")
+
+class CudaCore(GPU): def compute(self): print("Parallel processing execution")
+
+
+🔹 4. Hierarchical Inheritance
+
+Multiple child classes inherit from one single parent class.
+
+AI/ML Use Case: This is exactly how popular frameworks like PyTorch or Scikit-Learn structure their algorithms. A base model class branches out into specific architectures.
+
+Python
+
+class Classifier: # Single Parent
+
+    def evaluate(self): print("Calculating Accuracy...")
+
+class SVM(Classifier): pass       # Child 1
+
+class RandomForest(Classifier): pass # Child 2
+
+
+🔹 5. Hybrid Inheritance
+
+A blend of two or more types of inheritance mentioned above. It often forms a diamond shape structure, which Python resolves smoothly using the MRO (Method Resolution Order) protocol.
+
+🤖 3. Practical Relevance in AI/ML
+
+If you open the source code of library tools like PyTorch (torch.nn.Module) or Scikit-Learn (BaseEstimator), you will see that everything relies heavily on inheritance:
+
+Custom Deep Learning Layers: When building a custom neural network layer in PyTorch, your custom class must inherit from nn.Module. This lets your class automatically use heavy background tools like .to('cuda'), parameters tracking, and backpropagation mechanics without you having to code them from scratch.
+
+Custom Scikit-Learn Transformers: By inheriting from BaseEstimator and TransformerMixin, your custom text/image cleaner can plug cleanly directly into a standard Pipeline object.
