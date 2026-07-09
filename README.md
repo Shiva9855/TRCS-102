@@ -639,23 +639,59 @@ Custom Scikit-Learn Transformers: By inheriting from BaseEstimator and Transform
 
 
 
-📔 AI/ML Diary - Day 9📌 Topics CoveredConstructors (__init__)EncapsulationAccess Specifiers (Public, Protected, Private)Relevance in AI/ML🏗️ 1. Constructors (__init__)A constructor is a special method called automatically when an object of a class is instantiated. In Python, the __init__ method acts as the constructor. Its main purpose is to initialize the attributes (variables) of the class.🤖 AI/ML Practical Use Case:Initializing model hyperparameters when creating a model object.Pythonclass LogisticRegression:
+📔 AI/ML Diary - Day 9📌
+
+Topics Covered
+
+Constructors (__init__)
+
+EncapsulationAccess Specifiers (Public, Protected, Private)
+
+Relevance in AI/ML
+
+🏗️ 1. Constructors (__init__)A constructor is a special method called automatically when an object of a class is instantiated. In Python, the __init__ method acts as the constructor. Its main purpose is to initialize the attributes (variables) of the class.
+
+🤖 AI/ML Practical Use Case:Initializing model hyperparameters when creating a model object.
+
+Python
+
+class LogisticRegression:
+
     def __init__(self, learning_rate=0.01, iterations=1000):
+    
         self.lr = learning_rate          # Initializing hyperparameter
+        
         self.iters = iterations        # Initializing hyperparameter
+        
         self.weights = None             # Initializing model weights placeholder
 
 # Instantiate the object; __init__ runs automatically
 model = LogisticRegression(learning_rate=0.05)
-🔒 2. EncapsulationEncapsulation is the practice of bundling data (attributes) and methods that operate on that data into a single unit (a class), while restricting direct access to some of the object's components. This prevents accidental data modification.Instead of modifying data directly, we use public methods like Getters (to view data) and Setters (to safely update data).🚦 3. Access SpecifiersPython doesn't have strict enforcement keywords like public, private, or protected (like Java or C++). Instead, it relies on naming conventions to define the accessibility of data:Specifier TypeConventionDescriptionPublicnameAccessible from anywhere inside or outside the class.Protected_nameOne underscore. Suggests it should only be accessed within the class and its sub-classes.Private__name__Two underscores. Triggers Name Mangling; cannot be accessed directly outside the class.🛠️ Code Implementation:Pythonclass NeuralNetwork:
+
+
+🔒 2. EncapsulationEncapsulation is the practice of bundling data (attributes) and methods that operate on that data into a single unit (a class), while restricting direct access to some of the object's components. This prevents accidental data modification.Instead of modifying data directly, we use public methods like Getters (to view data) and Setters (to safely update data).
+
+
+🚦 3. Access SpecifiersPython doesn't have strict enforcement keywords like public, private, or protected (like Java or C++). Instead, it relies on naming conventions to define the accessibility of data:Specifier TypeConventionDescriptionPublicnameAccessible from anywhere inside or outside the class.Protected_nameOne underscore. Suggests it should only be accessed within the class and its sub-classes.Private__name__Two underscores. Triggers Name Mangling; cannot be accessed directly outside the class.🛠️ Code Implementation:Pythonclass NeuralNetwork:
+
+
     def __init__(self):
-        self.architecture = "CNN"       # Public: Anyone can see/change this
+    
+        self.architecture = "CNN" # Public: Anyone can see/change this
+        
         self._learning_rate = 0.01      # Protected: Sub-classes should use this
+        
         self.__weights = [0.1, -0.2]    # Private: Crucial internal data; protected from direct outside changes
 
 # Accessing attributes
 nn = NeuralNetwork()
+
 print(nn.architecture)     # Works fine (Public)
+
 print(nn._learning_rate)   # Works, but frowned upon (Protected)
+
 # print(nn.__weights)      # Throws AttributeError (Private)
+
+
+
 🤖 4. Practical Relevance in AI/MLEncapsulation and access specifiers are key to protecting internal algorithm mechanics:Protecting Trained Weights: In frameworks like Scikit-Learn or PyTorch, internal parameters like raw optimization weights or calculated gradients are kept private or protected. This stops an external script from accidentally rewriting the model's brain mid-validation.Exposing API Pipelines: You isolate the complex mathematics inside private methods (__calculate_gradients()) and only expose clean public methods (.fit() and .predict()) to the final user.
