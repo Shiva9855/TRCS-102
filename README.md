@@ -142,7 +142,7 @@ for image in dataset:
 
     if image.is_corrupted:
     
-        continue  # Skip this image and move to the next
+        continue  
         
     process_image(image)
 
@@ -199,7 +199,6 @@ AI/ML Use Case: Iterating through epochs to train a model, or looping over a lis
 
 Python
 
-# Simulating a model training loop over 3 epochs
 for epoch in range(1, 4):
    print(f"Training Epoch {epoch}...")
     
@@ -212,10 +211,12 @@ AI/ML Use Case: Training an agent in Reinforcement Learning until it reaches a s
 Python
 
 loss = 0.5
-# Loop runs until the loss drops below the acceptable threshold
+
 while loss > 0.1:
+
     print(f"Current loss: {loss:.2f}. Optimizing model...")
-       loss -= 0.15  # Simulating loss reduction
+    
+       loss -= 0.15  
     
 🔹 Infinite Loops (while True)
 
@@ -224,14 +225,17 @@ Concept: A loop that runs indefinitely because its conditional expression always
 AI/ML Use Case: Setting up real-time computer vision or camera streams (e.g., OpenCV) where the script must process video frames continuously until the user presses a 'quit' key.
 
 Python
-# Simulating a continuous video stream frame processor
 
 while True:
 
     frame_status = check_camera_feed()
-    if frame_status == "No Frame" or user_pressed_esc():
-        print("Stopping video stream.")
+    
+    if frame_status == "No Frame" or user_pressed_esc()
+    
+    print("Stopping video stream.")
+        
         break 
+        
     process_frame()
     
 
@@ -253,7 +257,7 @@ def greet_developer():
 
     print("Ready to train models!")
 
-greet_developer()  # Calling the function
+greet_developer()
 
 
 ⚙️ 2. Functions with Arguments
@@ -330,18 +334,17 @@ Recursion is heavily utilized in tree-based machine learning algorithms (like De
 
 Python
 
-# Classic Example: Calculating Factorial
 def factorial(n):
 
-    if n == 1:  # Base Case
+    if n == 1:  
     
         return 1
         
-    else: # Recursive Case
+    else:
     
         return n * factorial(n - 1)
 
-print(factorial(5))  # Output: 120
+print(factorial(5))
 
 
 📔 AI/ML Diary - Day 6
@@ -389,7 +392,7 @@ content = file.read()
 
 print(content)
 
-file.close()  # Mandatory to avoid memory leaks
+file.close()  
 
 
 🔒 3. The Modern Approach: Using with Keyword
@@ -400,17 +403,17 @@ Why use it?: It automatically closes the file as soon as the nested code block c
 
 Python
 
-# Writing to a log file
+
 with open("training_logs.txt", "w") as file:
 
     file.write("Epoch 1: Loss = 0.045\n")
     
     file.write("Epoch 2: Loss = 0.012\n")
 
-# Reading from the log file
+
 with open("training_logs.txt", "r") as file:
 
-    lines = file.readlines()  # Reads file line by line into a list
+    lines = file.readlines() 
     
     for line in lines:
     
@@ -460,26 +463,19 @@ Python
 
 try:
 
-    # Code that might crash/throw an exception
     
     result = 10 / 0
     
 except ZeroDivisionError as e:
 
-    # Code that executes if a specific exception occurs
-    
     print(f"Error caught: {e}")
     
 else:
-
-    # Code that executes ONLY if NO exception occurred in the try block
     
     print("Everything ran successfully!")
     
 finally:
 
-    # Code that ALWAYS executes, no matter what (used for cleanup)
-    
     print("Cleanup operations complete.")
 
     
@@ -507,8 +503,6 @@ except ZeroDivisionError:
     print("Cannot compute metrics; division by zero encountered.")
     
 except Exception as e:
-
-    # Generic catch-all for any other unforeseen errors
     
     print(f"An unexpected error occurred: {e}")
 
@@ -568,11 +562,11 @@ AI/ML Use Case: Creating a specific baseline Neural Network layer from a generic
 
 Python
 
-class Model: # Parent
+class Model: 
 
     def train(self): print("Training...")
 
-class LinearRegression(Model): # Child
+class LinearRegression(Model): 
 
     def predict(self): print("Predicting...")
 
@@ -589,8 +583,7 @@ class DataPreprocessor: def clean(self): print("Cleaning data...")
 
 class Logger: def log(self): print("Logging metrics...")
 
-class TrainingPipeline(DataPreprocessor, Logger): # Inherits from both
-
+class TrainingPipeline(DataPreprocessor, Logger):
     pass
 
     
@@ -615,13 +608,13 @@ AI/ML Use Case: This is exactly how popular frameworks like PyTorch or Scikit-Le
 
 Python
 
-class Classifier: # Single Parent
+class Classifier: 
 
     def evaluate(self): print("Calculating Accuracy...")
 
-class SVM(Classifier): pass       # Child 1
+class SVM(Classifier): pass       
 
-class RandomForest(Classifier): pass # Child 2
+class RandomForest(Classifier): pass 
 
 
 🔹 5. Hybrid Inheritance
@@ -665,7 +658,6 @@ class LogisticRegression:
         
         self.weights = None             # Initializing model weights placeholder
 
-# Instantiate the object; __init__ runs automatically
 model = LogisticRegression(learning_rate=0.05)
 
 
@@ -683,14 +675,11 @@ model = LogisticRegression(learning_rate=0.05)
         
         self.__weights = [0.1, -0.2]    # Private: Crucial internal data; protected from direct outside changes
 
-# Accessing attributes
 nn = NeuralNetwork()
 
-print(nn.architecture)     # Works fine (Public)
+print(nn.architecture)     
 
-print(nn._learning_rate)   # Works, but frowned upon (Protected)
-
-# print(nn.__weights)      # Throws AttributeError (Private)
+print(nn._learning_rate)  
 
 
 
