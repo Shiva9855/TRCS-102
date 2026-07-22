@@ -700,62 +700,95 @@ The super() Function
 Relevance in AI/ML
 
 🎭 1. Polymorphism
+
 Polymorphism literally means "many forms." In OOP, it allows different classes to implement methods with the same name, enabling a single interface to handle various underlying data types or model architectures.
 
 🔹 Method Overloading
+
 Concept: Having multiple methods with the same name but different parameter signatures in the same class.
 
 In Python: Python does not natively support traditional method overloading. If you define a method twice, the latest definition overwrites the previous one. However, we achieve similar functionality using default arguments or *args.
 
 Python
+
 class Predictor:
-    # Simulating overloading using default arguments
+    
     def predict(self, data=None):
+    
         if data is None:
+        
             return "No data provided"
+            
         return f"Predicting on {len(data)} samples"
+
+        
 🔹 Method Overriding
+
 Concept: Occurs when a Child class provides a specific implementation for a method that is already defined in its Parent class.
 
 AI/ML Use Case: Overriding generic model behavior to create custom model execution loops.
 
 Python
+
 class BaseEstimator:
+
     def fit(self):
+    
         print("Generic fit routine")
 
 class DecisionTree(BaseEstimator):
-    def fit(self): # Overrides BaseEstimator.fit()
+
+    def fit(self): 
+    
         print("Building decision tree nodes based on Information Gain...")
+
+
+        
 🏛️ 2. Abstraction
+
 Abstraction is the concept of hiding complex internal implementation details and exposing only the essential interface to the user.
 
 In Python, abstraction is enforced using the abc (Abstract Base Class) module and the @abstractmethod decorator. An abstract class cannot be instantiated directly; any child class inheriting from it must implement all abstract methods.
 
 Python
+
 from abc import ABC, abstractmethod
 
 class BaseMLModel(ABC):
+
     @abstractmethod
+    
     def train(self, X, y):
-        pass  # Abstract method; must be defined by child classes
+    
+        pass 
 
 class KNN(BaseMLModel):
+
     def train(self, X, y):
+    
         print("Storing dataset points for distance computation...")
+        
 🦸 3. The super() Function
+
 The super() function is used to call methods or constructors from a parent class inside a child class. It prevents redundant code and allows the child class to extend parent behavior cleanly.
 
 Python
+
 class NeuralNetwork:
+
     def __init__(self, layers):
+    
         self.layers = layers
 
 class ConvolutionalNet(NeuralNetwork):
+
     def __init__(self, layers, kernel_size):
-        super().__init__(layers)  # Inherit layers setup from NeuralNetwork
+    
+        super().__init__(layers)  
+        
         self.kernel_size = kernel_size
-🤖 4. Practical Relevance in AI/ML
+        
+🤖 4. Practical Relevance in AI/ML:-
 Uniform ML Pipelines (Polymorphism): Scikit-Learn uses polymorphism extensively. Because every model (Linear Regression, SVM, Random Forest) implements standard .fit() and .predict() methods, you can plug any model seamlessly into a shared evaluation loop without changing your code structure.
 
 Framework Standardization (Abstraction): PyTorch uses abstract classes for torch.utils.data.Dataset. When creating a custom dataset, you must override __len__() and __getitem__() so PyTorch's DataLoader knows how to batch your data.
